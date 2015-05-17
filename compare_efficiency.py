@@ -25,7 +25,7 @@ def root_exhaustive_enum(x, power, epsilon=0.01):
     if abs(ans ** power - x) >= epsilon:
         print("failed on square root of ", x)
     else:
-        print('root_exhaustive_enum result: ', ans, 'num_guesses :', num_guesses)
+        print('root_exhaustive_enum result: ', ans, ', iterations: ', num_guesses)
 
 
 def root_bis_search(x, power, epsilon=0.01):
@@ -46,7 +46,7 @@ def root_bis_search(x, power, epsilon=0.01):
             high = ans
         ans = (high + low) / 2.0
 
-    print('root_bis_search result: ', ans, 'num_guesses: ', num_guesses)
+    print('root_bis_search result: ', ans, ', iterations: ', num_guesses)
 
 
 def root_newton_raphson(x, power, epsilon=0.01):
@@ -61,7 +61,7 @@ def root_newton_raphson(x, power, epsilon=0.01):
         num_guesses += 1
         guess = guess - (((guess ** power) - k) / (power * guess))
 
-    print('root_newton_raphson result: ', guess, 'num_guesses: ', num_guesses)
+    print('root_newton_raphson result: ', guess, ', iterations: ', num_guesses)
 
 x = 10000
 power = 2
@@ -72,6 +72,6 @@ root_newton_raphson(x, power)
 
 # Results:
 #
-# root_exhaustive_enum result:  100.00000000219612 num_guesses : 1000000
-# root_bis_search result:  99.99997913837433 num_guesses:  26
-# root_newton_raphson result:  100.00000025438577 num_guesses:  9
+# root_exhaustive_enum result:  100.00000000219612 , iterations : 1000000
+# root_bis_search result:  99.99997913837433 , iterations:  26
+# root_newton_raphson result:  100.00000025438577 , iterations:  9
