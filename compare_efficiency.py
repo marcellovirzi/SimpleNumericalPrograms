@@ -70,3 +70,8 @@ root_exhaustive_enum(x, power)
 root_bis_search(x, power)
 root_newton_raphson(x, power)
 
+# Results:
+#
+# root_exhaustive_enum result:  100.00000000219612 num_guesses : 1000000
+# root_bis_search result:  99.99997913837433 num_guesses:  26
+# root_newton_raphson result:  100.00000025438577 num_guesses:  9
