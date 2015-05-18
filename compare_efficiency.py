@@ -2,7 +2,7 @@ __author__ = 'marcellovirzi'
 
 # The program compares the results of three search
 # methods of approximation of the square root
-# (in terms number of iterations).
+# (in terms of number of iterations).
 #
 # The methods are:
 # 1) exhaustive enumeration
@@ -10,15 +10,16 @@ __author__ = 'marcellovirzi'
 # 3) newton - raphson method
 
 
-
 def root_exhaustive_enum(x, power, epsilon=0.01):
-    """ Return an approximation of the power root of any nonnegative number x.
+    """ Return float y such that y**power is within epsilon of x.
 
-    Optional argument epsilon is the approximation of the answer (default 0.1).
+    Assumes x and epsilon int or float, power an int, epsilon >0 & power >0.
     """
     step = epsilon ** 2
     num_guesses = 0
     ans = 0.0
+    if x < 0 and power % 2 == 0:
+        return None
     while abs(ans ** power - x) >= epsilon and ans <= x:
         ans += step
         num_guesses += 1
@@ -29,15 +30,16 @@ def root_exhaustive_enum(x, power, epsilon=0.01):
 
 
 def root_bis_search(x, power, epsilon=0.01):
-    """ Return an approximation of the power root of any nonnegative number x.
+    """ Return float y such that y**power is within epsilon of x.
 
-    Optional argument epsilon is the approximation of the answer (default 0.1).
+    Assumes x and epsilon int or float, power an int, epsilon >0 & power >0.
     """
     num_guesses = 0
     low = 0.0
     high = max(1.0, x)
     ans = (high + low) / 2.0
-
+    if x < 0 and power % 2 == 0:
+        return None
     while abs(ans ** power - x) >= epsilon:
         num_guesses += 1
         if ans ** power < x:
@@ -50,20 +52,22 @@ def root_bis_search(x, power, epsilon=0.01):
 
 
 def root_newton_raphson(x, power, epsilon=0.01):
-    """ Return an approximation of the power root of any nonnegative number x.
+    """ Return float y such that y**power is within epsilon of x.
 
-    Optional argument epsilon is the approximation of the answer (default 0.1).
+    Assumes x and epsilon int or float, power an int, epsilon >0 & power >0.
     """
     k = x
     guess = k / float(power)
     num_guesses = 0
+    if x < 0 and power % 2 == 0:
+        return None
     while abs(guess * guess - k) >= epsilon:
         num_guesses += 1
-        guess = guess - (((guess ** power) - k) / (power * guess))
+        guess = guess - (((guess ** power) - k) / (power * guess)) # successive approximation
 
     print('root_newton_raphson result: ', guess, ', iterations: ', num_guesses)
 
-x = 10000
+x = 25
 power = 2
 
 root_exhaustive_enum(x, power)
